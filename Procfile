@@ -1,1 +1,1 @@
-worker: python modi_bot.py
+worker: python script.py
