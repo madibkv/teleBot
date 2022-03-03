@@ -40,7 +40,7 @@ reply_handler = MessageHandler(Filters.text & (~Filters.command),reply)
 dispatcher.add_handler(reply_handler)
 
 j = updater.job_queue
-job_daily = j.run_daily(good_night,days=(0, 1, 2, 3, 4, 5, 6),time=datetime.time(hour=3, minute=00,second=00,tzinfo=pytz.timezone('Asia/Seoul')))
+job_daily = j.run_daily(good_night,days=(0, 1, 2, 3, 4, 5, 6),time=datetime.time(hour=2, minute=00,second=00,tzinfo=pytz.timezone('Asia/Seoul')))
 #j.run_once(good_night,10)
 
 updater.start_polling()
