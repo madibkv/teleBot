@@ -26,9 +26,8 @@ def reply(update,context):
 
 def good_night(context : CallbackContext):
 	message = random.choice(GOOD_NIGHT_MSGS)
-	#context.bot.send_message(chat_id=256346230,text=message)
+	context.bot.send_message(chat_id=256346230,text=message)
 	context.bot.send_message(chat_id=724989540,text=message)
-
 
 
 # 724989540
