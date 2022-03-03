@@ -43,4 +43,4 @@ job_daily = j.run_daily(good_night,days=(0, 1, 2, 3, 4, 5, 6),time=datetime.time
 #j.run_once(good_night,10)
 
 updater.start_polling()
-pdater.idle()
+updater.idle()
