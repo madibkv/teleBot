@@ -9,7 +9,7 @@ updater = Updater(token='5122698218:AAFWpy_RooKtfQkGDL2Jlw9tKM1dC9e2MQM', use_co
 dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 
-CURRENT_VERSION = 'modiBot v2.0'
+CURRENT_VERSION = 'modiBot v2.1'
 GOOD_NIGHT_MSGS = ['Спокойной ночи', 'Спокойной ночи, лю тя', 'Спокойной бро, лю тя', 'Спокойной ночи бро, лублу тя','лубу тебя, спокойной ночи',
 'Спокойной ночи бро', 'Спокойной бро, лю тебя', 'Спи крепко бро, лублу тебя','Спокойной ночи, лублу тя','Спокойной, лу тя бро']
 
@@ -42,7 +42,7 @@ def send_secret_message(update, context):
 def reply(update,context):
 	message = '♥'
 	context.bot.send_message(chat_id=update.effective_chat.id,text=message)
-	context.bot.send_message(char_id=256346230,text=update.message.text)
+	context.bot.send_message(chat_id=256346230,text=update.message.text)
 
 def good_night(context : CallbackContext):
 	message = random.choice(GOOD_NIGHT_MSGS)
@@ -50,7 +50,9 @@ def good_night(context : CallbackContext):
 	if chance == 7 or chance == 33 or chance == 77:
 		message = SECRET_MSG
 
-	context.bot.send_message(chat_id=256346230,text=message)
+	debug_msg = message + '\n\nRandint: '+str(chance)
+
+	context.bot.send_message(chat_id=256346230,text=debug_msg)
 	context.bot.send_message(chat_id=724989540,text=message)
 
 
