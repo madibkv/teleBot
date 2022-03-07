@@ -9,7 +9,7 @@ updater = Updater(token='5122698218:AAFWpy_RooKtfQkGDL2Jlw9tKM1dC9e2MQM', use_co
 dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 
-CURRENT_VERSION = 'modiBot v3.0'
+CURRENT_VERSION = 'modiBot v3.1'
 GOOD_NIGHT_MSGS = ['Спокойной ночи', 'Спокойной ночи, лю тя', 'Спокойной бро, лю тя', 'Спокойной ночи бро, лублу тя','лубу тебя, спокойной ночи',
 'Спокойной ночи бро', 'Спокойной бро, лю тебя', 'Спи крепко бро, лублу тебя','Спокойной ночи, лублу тя','Спокойной, лу тя бро']
 
@@ -47,7 +47,7 @@ def reply(update,context):
 def good_night(context : CallbackContext):
 	message = random.choice(GOOD_NIGHT_MSGS)
 	chance = random.randint(1,100)
-	if chance == 7 or chance == 33 or chance == 77 or chance == 55 or chance == 25:
+	if chance == 7 or chance == 22 or chance == 85 or chance == 33 or chance == 77 or chance == 55 or chance == 25:
 		message = SECRET_MSG
 
 	debug_msg = message + '\n\nRandint: '+str(chance)
