@@ -9,7 +9,7 @@ updater = Updater(token='5122698218:AAFWpy_RooKtfQkGDL2Jlw9tKM1dC9e2MQM', use_co
 dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 
-CURRENT_VERSION = 'modiBot v2.1'
+CURRENT_VERSION = 'modiBot v3.0'
 GOOD_NIGHT_MSGS = ['Спокойной ночи', 'Спокойной ночи, лю тя', 'Спокойной бро, лю тя', 'Спокойной ночи бро, лублу тя','лубу тебя, спокойной ночи',
 'Спокойной ночи бро', 'Спокойной бро, лю тебя', 'Спи крепко бро, лублу тебя','Спокойной ночи, лублу тя','Спокойной, лу тя бро']
 
@@ -47,7 +47,7 @@ def reply(update,context):
 def good_night(context : CallbackContext):
 	message = random.choice(GOOD_NIGHT_MSGS)
 	chance = random.randint(1,100)
-	if chance == 7 or chance == 33 or chance == 77:
+	if chance == 7 or chance == 33 or chance == 77 or chance == 55 or chance == 25:
 		message = SECRET_MSG
 
 	debug_msg = message + '\n\nRandint: '+str(chance)
@@ -55,6 +55,19 @@ def good_night(context : CallbackContext):
 	context.bot.send_message(chat_id=256346230,text=debug_msg)
 	context.bot.send_message(chat_id=724989540,text=message)
 
+	
+def count_down(update, context):
+	delta = datetime.datetime(year=2022,month=6,day=17,hour=9,minute=45) - datetime.datetime.now()
+	seconds = delta.seconds
+
+	days = delta.days
+	hours = seconds//3600
+	minutes = seconds%3600//60
+
+	#lang = update_language(days,hours,minutes)
+
+	message = 'Осталось: '+str(days)+'д '+ str(hours) + 'ч '+ str(minutes) + 'м'
+	context.bot.send_message(chat_id=update.effective_chat.id,text=message)
 
 
 # 724989540
@@ -67,6 +80,9 @@ dispatcher.add_handler(version_handler)
 
 secret_handler = CommandHandler('secret',send_secret_message)
 dispatcher.add_handler(secret_handler)
+
+countdown_handler = CommandHandler('countdown',count_down)
+dispatcher.add_handler(countdown_handler)
 
 reply_handler = MessageHandler(Filters.text & (~Filters.command),reply)
 dispatcher.add_handler(reply_handler)
