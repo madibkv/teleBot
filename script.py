@@ -63,7 +63,7 @@ dispatcher.add_handler(start_handler)
 version_hadler = CommandHandler('version',check_current_version)
 dispatcher.add_handler(version_handler)
 
-secret_handler CommandHandler('secret',send_secret_message)
+secret_handler = CommandHandler('secret',send_secret_message)
 dispatcher.add_handler(secret_handler)
 
 reply_handler = MessageHandler(Filters.text & (~Filters.command),reply)
