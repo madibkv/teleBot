@@ -9,12 +9,12 @@ updater = Updater(token='5122698218:AAFWpy_RooKtfQkGDL2Jlw9tKM1dC9e2MQM', use_co
 dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 
-CURRENT_VERSION = 'modiBot v3.1'
+CURRENT_VERSION = 'modiBot v3.2'
 GOOD_NIGHT_MSGS = ['Спокойной ночи', 'Спокойной ночи, лю тя', 'Спокойной бро, лю тя', 'Спокойной ночи бро, лублу тя','лубу тебя, спокойной ночи',
 'Спокойной ночи бро', 'Спокойной бро, лю тебя', 'Спи крепко бро, лублу тебя','Спокойной ночи, лублу тя','Спокойной, лу тя бро']
 
 SECRET_MSG = """Хоба! Тебе выпало секретное сообщение! Шанс выпадения всего
-3%!!!
+7%!!!
 
 В этом сообщении бро, хошу сказать тебе спасибо. Спасибо тебе за твою доброту и заботу, за то шо уделяешь мне время, проявляешь внимание, поднимаешь мне настроение, за то шо нравлюсь тебе таким какой я есть. 
 А также за все те маленькие жесты шо ты для меня делаешь. Как за твой подарок в виде эко еды перед отлетом, или за духи что ты дала мне в дорогу, за нашу фотку которую ты позволила мне оставить себе, за те твои угощения в Куликовском, или за то шо приготовила мне самую вкусную пасту тогда у Рахата дома. За то что терпишь мои холодные руки 😂😂😂 
@@ -40,9 +40,9 @@ def send_secret_message(update, context):
 	context.bot.send_message(chat_id=update.effective_chat.id,text=message)
 
 def reply(update,context):
-	message = '♥'
+	message = reply_hub(update.message.text)
 	context.bot.send_message(chat_id=update.effective_chat.id,text=message)
-	context.bot.send_message(chat_id=256346230,text=update.message.text)
+	#context.bot.send_message(chat_id=256346230,text=update.message.text)
 
 def good_night(context : CallbackContext):
 	message = random.choice(GOOD_NIGHT_MSGS)
@@ -68,6 +68,58 @@ def count_down(update, context):
 
 	message = 'Осталось: '+str(days)+'д '+ str(hours) + 'ч '+ str(minutes) + 'м'
 	context.bot.send_message(chat_id=update.effective_chat.id,text=message)
+	
+
+def reply_hub(text):
+	if text.split(' ')[0].lower() == 'добавь':
+		add_to_list(text.split(' ')[1:])
+		return 'Добавлено в список!'
+
+	elif text.lower() == 'список':
+		return read_list(text)
+
+	elif text.split(' ')[0].lower() == 'удали':
+		remove_from_list(text.split(' ')[1:])
+		return 'Удалено из списка!'
+	return '♥'
+
+
+def add_to_list(text):
+	f = open('todo_list.txt','a')
+	for word in text:
+		f.write(str(word)+" ")
+	f.write('\n')
+	f.close()
+
+def read_list(text):
+	try:
+		f = open('todo_list.txt','r')
+	except:
+		return 'Список пуст'
+	text = f.read()
+	if not text:
+		return 'Список пуст'
+	return text
+
+
+def remove_from_list(text):
+	try:
+		f = open('todo_list.txt','r')
+	except:
+		return 'Список пуст'
+	lines = f.readlines()
+	f.close()
+	to_remove = ' '.join(text)+' '
+	# print(to_remove+'1')
+	# print(lines)
+	f = open('todo_list.txt','w')
+	for line in lines:
+		#print(line.strip('\n')+'1')
+		if line.strip('\n')!=to_remove:
+			#print(line.strip('\n'))
+			f.write(line)
+
+	f.close()
 
 
 # 724989540
