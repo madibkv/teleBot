@@ -76,8 +76,8 @@ def reply_hub(text):
 		return 'Добавлено в список!'
 
 	elif text.lower() == 'список':
-		return read_list(text)
-
+		return "Список дел:\n" + read_list(text)
+	
 	elif text.split(' ')[0].lower() == 'удали':
 		remove_from_list(text.split(' ')[1:])
 		return 'Удалено из списка!'
