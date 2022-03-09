@@ -131,7 +131,7 @@ dispatcher.add_handler(start_handler)
 version_handler = CommandHandler('version',check_current_version)
 dispatcher.add_handler(version_handler)
 
-secret_handler = CommandHandler('Aikosha',send_secret_message)
+secret_handler = CommandHandler('aikosha',send_secret_message)
 dispatcher.add_handler(secret_handler)
 
 countdown_handler = CommandHandler('countdown',count_down)
