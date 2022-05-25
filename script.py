@@ -46,8 +46,8 @@ def reply(update,context):
 def good_night(context : CallbackContext):
 	message = random.choice(GOOD_NIGHT_MSGS)
 	chance = random.randint(1,100)
-	if chance == 7 or chance == 22 or chance == 85 or chance == 33 or chance == 77 or chance == 55 or chance == 25:
-		message = SECRET_MSG
+# 	if chance == 7 or chance == 22 or chance == 85 or chance == 33 or chance == 77 or chance == 55 or chance == 25:
+# 		message = SECRET_MSG
 
 	debug_msg = message + '\n\nRandint: '+str(chance)
 
