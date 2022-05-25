@@ -56,7 +56,7 @@ def good_night(context : CallbackContext):
 
 	
 def count_down(update, context):
-	delta = datetime.datetime(year=2022,month=6,day=17,hour=9,minute=45,tzinfo=pytz.timezone('Asia/Seoul')) - datetime.datetime.now(tz=pytz.timezone('Asia/Seoul'))
+	delta = datetime.datetime(year=2022,month=6,day=24,hour=6,minute=50,tzinfo=pytz.timezone('Asia/Seoul')) - datetime.datetime.now(tz=pytz.timezone('Asia/Seoul'))
 	seconds = delta.seconds
 
 	days = delta.days
